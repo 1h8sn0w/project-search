@@ -1,4 +1,5 @@
 import './App.css';
+import Favorite from "./components/Favorite";
 import SearchResults from "./components/SearchResults";
 
 function App() {
