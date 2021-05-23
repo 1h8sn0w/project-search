@@ -1,5 +1,5 @@
-import './App.css';
 import {useEffect} from "react";
+import './App.css';
 import SearchResults from "./components/SearchResults";
 import useLocalStorage from "./hooks/useLocalStorage";
 
@@ -17,6 +17,12 @@ function App() {
         setStorage([...storage, newItem])
     }
 
+    function handleDelete(item) {
+        let arr = JSON.parse(localStorage.getItem('favorite'))
+        setStorage(arr.filter(i => i.id !== item.id))
+    }
+
+
     return (
         <div className="App">
             <h1>Github project search</h1>
@@ -25,7 +31,8 @@ function App() {
                     return <button key={Math.random()} type="button" className="btn btn-outline-dark m-1"
                                    data-bs-toggle="tooltip"
                                    data-bs-placement="bottom"
-                                   title="Tooltip on bottom">
+                                   title="Double click to delete"
+                                   onDoubleClick={() => handleDelete(item)}>
                         {item.full_name}
                     </button>
                 })

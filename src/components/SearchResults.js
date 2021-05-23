@@ -52,24 +52,27 @@ const SearchResults = ({setStorage}) => {
     return (
         <div className="container pt-3">
             <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">GitHub repository name: </span>
-            <input
-                ref={inputRef}
-                value={query}
-                placeholder={'project name'}
-                onChange={handleChange}
-                type="text"
-                className="form-control"
-            /></div>
-            {results.items && <select ref={selectRef} onChange={onChangeHandler} className="form-select mb-3" aria-label="Select language">
+                <span className="input-group-text" id="basic-addon1">GitHub repository name: </span>
+                <input
+                    ref={inputRef}
+                    value={query}
+                    placeholder={'project name'}
+                    onChange={handleChange}
+                    type="text"
+                    className="form-control"
+                /></div>
+            {results.items && <select ref={selectRef} onChange={onChangeHandler} className="form-select mb-3"
+                                      aria-label="Select language">
                 <option value={''}>All languages</option>
                 {getUniqueList(results.items, 'language').map(repo => {
-                    return <option value={repo.language !== null ? repo.language : 'null' } key={repo.id}>{repo.language !== null ? repo.language : 'No language' }</option>
+                    return <option value={repo.language !== null ? repo.language : 'null'}
+                                   key={repo.id}>{repo.language !== null ? repo.language : 'No language'}</option>
                 })}</select>}
             {isLoading ? <div className="spinner-border" role="status" style={{width: '3rem', height: '3rem'}}>
                     <span className="visually-hidden">Loading...</span>
                 </div> :
-                <ul className="list-group mb-3">{results.items && <Projects repos={results.items} filter={filter} setStorage={setStorage}/>}</ul>}
+                <ul className="list-group mb-3">{results.items &&
+                <Projects repos={results.items} filter={filter} setStorage={setStorage}/>}</ul>}
         </div>
     )
 }
