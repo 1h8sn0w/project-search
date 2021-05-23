@@ -5,24 +5,25 @@ const Projects = ({repos, filter, setStorage}) => {
     }
 
     return (
-        repos.map(repo => {
-            if (filter.length > 1 && repo.language !== filter) {
-                return <></>
-            } else {
+        repos.filter(item => filter === '' || String(item.language) === filter).map(repo => {
             return (
-                <li className="list-group-item" key={repo.id}>
+                <li className="list-group-item" key={repo.node_id}>
                     <img className="rounded" src={repo.owner.avatar_url} alt={repo.owner.id}
                          style={{width: '50px', height: '50px'}}/>
                     <h2>{repo.name.toUpperCase()}</h2>
                     <div>&#11088; {repo.stargazers_count} &#11088;</div>
                     <h5>{repo.description}</h5>
                     <a href={repo.html_url}>Link to project</a>
-                    <div>Language: <b>{repo.language}</b></div>
+                    <div>Language: <b>{repo.language !== null ? repo.language : 'No language'}</b></div>
                     {/*TODO: disabled on favorite in list*/}
-                    <button type="button" className="btn btn-success" onClick={({target})=>{onClickHandler(repo, target)}}>Add to favorite</button>
+                    <button type="button" className="btn btn-success" onClick={({target}) => {
+                        onClickHandler(repo, target)
+                    }}>Add to favorite
+                    </button>
                 </li>
-            )}
-        })
+            )
+            }
+        )
     )
 
 }

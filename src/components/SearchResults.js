@@ -64,7 +64,7 @@ const SearchResults = ({setStorage}) => {
             {results.items && <select ref={selectRef} onChange={onChangeHandler} className="form-select mb-3" aria-label="Select language">
                 <option value={''}>All languages</option>
                 {getUniqueList(results.items, 'language').map(repo => {
-                    return <option value={repo.language} key={repo.id}>{repo.language}</option>
+                    return <option value={repo.language !== null ? repo.language : 'null' } key={repo.id}>{repo.language !== null ? repo.language : 'No language' }</option>
                 })}</select>}
             {isLoading ? <div className="spinner-border" role="status" style={{width: '3rem', height: '3rem'}}>
                     <span className="visually-hidden">Loading...</span>
