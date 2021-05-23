@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import Projects from "./Projects";
 
-const SearchResults = () => {
+const SearchResults = ({setStorage}) => {
     const [results, setResults] = useState('');
     const [query, setQuery] = useState('');
     const [filter, setFilter] = useState('');
@@ -66,8 +66,10 @@ const SearchResults = () => {
                 {getUniqueList(results.items, 'language').map(repo => {
                     return <option value={repo.language} key={repo.id}>{repo.language}</option>
                 })}</select>}
-            {isLoading ? <div>...Loading...</div> :
-                <ul className="list-group">{results.items && <Projects repos={results.items} filter={filter}/>}</ul>}
+            {isLoading ? <div className="spinner-border" role="status" style={{width: '3rem', height: '3rem'}}>
+                    <span className="visually-hidden">Loading...</span>
+                </div> :
+                <ul className="list-group">{results.items && <Projects repos={results.items} filter={filter} setStorage={setStorage}/>}</ul>}
         </div>
     )
 }

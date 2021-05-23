@@ -1,7 +1,7 @@
-const Projects = ({repos, filter}) => {
+const Projects = ({repos, filter, setStorage}) => {
     function onClickHandler(repo, target) {
+        setStorage(repo)
         target.disabled = true
-        localStorage.setItem(repo.id, JSON.stringify(repo))
     }
 
     return (
@@ -18,7 +18,8 @@ const Projects = ({repos, filter}) => {
                     <h5>{repo.description}</h5>
                     <a href={repo.html_url}>Link to project</a>
                     <div>Language: <b>{repo.language}</b></div>
-                    <button type="button" disabled={!!localStorage.getItem(repo.id)} className="btn btn-success" onClick={({target})=>{onClickHandler(repo, target)}}>Add to favorite</button>
+                    {/*TODO: disabled on favorite in list*/}
+                    <button type="button" className="btn btn-success" onClick={({target})=>{onClickHandler(repo, target)}}>Add to favorite</button>
                 </li>
             )}
         })
