@@ -16,7 +16,7 @@ const Projects = ({repos, filter, setStorage}) => {
                         <img className="rounded" src={repo.owner.avatar_url} alt={repo.owner.id}
                              style={{width: '50px', height: '50px'}}/>
                         <h2>{repo.name.toUpperCase()}</h2>
-                        <div>&#11088; {repo.stargazers_count} &#11088; id:{repo.id}</div>
+                        <div>&#11088; {repo.stargazers_count} &#11088;</div>
                         <h5>{repo.description}</h5>
                         <a href={repo.html_url}>Link to project</a>
                         <div>Language: <b>{repo.language !== null ? repo.language : 'No language'}</b></div>
