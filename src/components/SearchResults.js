@@ -69,7 +69,7 @@ const SearchResults = ({setStorage}) => {
             {isLoading ? <div className="spinner-border" role="status" style={{width: '3rem', height: '3rem'}}>
                     <span className="visually-hidden">Loading...</span>
                 </div> :
-                <ul className="list-group">{results.items && <Projects repos={results.items} filter={filter} setStorage={setStorage}/>}</ul>}
+                <ul className="list-group mb-3">{results.items && <Projects repos={results.items} filter={filter} setStorage={setStorage}/>}</ul>}
         </div>
     )
 }

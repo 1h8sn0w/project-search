@@ -4,6 +4,11 @@ const Projects = ({repos, filter, setStorage}) => {
         target.disabled = true
     }
 
+    function isFavorite(repo) {
+        let favorite = JSON.parse(localStorage.getItem('favorite'))
+        return favorite.find(element => repo.id === element.id)
+    }
+
     return (
         repos.filter(item => filter === '' || String(item.language) === filter).map(repo => {
             return (
@@ -11,12 +16,11 @@ const Projects = ({repos, filter, setStorage}) => {
                     <img className="rounded" src={repo.owner.avatar_url} alt={repo.owner.id}
                          style={{width: '50px', height: '50px'}}/>
                     <h2>{repo.name.toUpperCase()}</h2>
-                    <div>&#11088; {repo.stargazers_count} &#11088;</div>
+                    <div>&#11088; {repo.stargazers_count} &#11088; id:{repo.id}</div>
                     <h5>{repo.description}</h5>
                     <a href={repo.html_url}>Link to project</a>
                     <div>Language: <b>{repo.language !== null ? repo.language : 'No language'}</b></div>
-                    {/*TODO: disabled on favorite in list*/}
-                    <button type="button" className="btn btn-success" onClick={({target}) => {
+                    <button type="button" disabled={isFavorite(repo)} className="btn btn-success mt-3 mb-3" onClick={({target}) => {
                         onClickHandler(repo, target)
                     }}>Add to favorite
                     </button>
@@ -25,7 +29,6 @@ const Projects = ({repos, filter, setStorage}) => {
             }
         )
     )
-
 }
 
 export default Projects
