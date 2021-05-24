@@ -17,3 +17,6 @@ Task: Develop an application that searches the projects on Github. The main comp
 - Nice to use: Redux, Immutable.js
 - The code must comply with all current standards and recommendations for writing applications from the React team .
 - Use the https://stackblitz.com/ platform to create the project
+
+
+working demo: https://mytest-c00dd.web.app/
